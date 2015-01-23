@@ -9,9 +9,9 @@ public static class Model {
 	public static Dictionary <string, int> data = new Dictionary<string, int>();
 	public static ArrayList enemyShips = new ArrayList();
 	public static ArrayList playerShips = new ArrayList();
-
+	
 	public static ArrayList listeners = new ArrayList();
-
+	
 	public static void AddListener(GameObject listener)
 	{
 		listeners.Add (listener);
@@ -61,13 +61,13 @@ public static class Model {
 		
 		return -1;
 	}
-
+	
 	public static void AddPlayerShip(Ship ship) {
 		playerShips.Add (ship);
 		foreach (GameObject listener in listeners) {
 			if(listener.activeSelf)
 				listener.SendMessage("AddPlayerShipCallback");
-	 	}
+		}
 	}
 	
 	public static void AddEnemyShip(Ship ship) {
@@ -77,11 +77,11 @@ public static class Model {
 				listener.SendMessage("AddEnemyShipCallback");
 		}
 	}
-
+	
 	public static ArrayList GetPlayerShips() {
 		return playerShips;
 	}
-
+	
 	public static ArrayList GetEnemyShips() {
 		return enemyShips;
 	}
