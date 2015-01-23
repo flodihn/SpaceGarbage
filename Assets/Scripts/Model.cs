@@ -59,7 +59,7 @@ public static class Model {
 		if(data.ContainsKey(key))
 			return data[key];
 		
-		return -1;
+		return 0;
 	}
 	
 	public static void AddPlayerShip(Ship ship) {
