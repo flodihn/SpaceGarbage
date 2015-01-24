@@ -108,6 +108,8 @@ public class BattleEngine : MonoBehaviour {
 	void TriggerFailure() {
 	}
 
-
+	public void ReturnToShip() {
+		Application.LoadLevel("GarbageSpace");
+	}
 	
 }
