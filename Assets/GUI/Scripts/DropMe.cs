@@ -5,10 +5,19 @@ using UnityEngine.UI;
 
 public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+	public SpaceGarbage.ShipTypes shipType;
+	public Button activateButton;
+
+	public string modelKeyOnDrop;
+
 	public Image containerImage;
 	public Image receivingImage;
 	private Color normalColor;
 	public Color highlightColor = Color.yellow;
+
+	public GameObject callBackObj;
+	public string callBackFun;
+	public int callBackArg;
 	
 	public void OnEnable ()
 	{
@@ -23,10 +32,22 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 		
 		if (receivingImage == null)
 			return;
-		
+
 		Sprite dropSprite = GetDropSprite (data);
 		if (dropSprite != null)
 			receivingImage.overrideSprite = dropSprite;
+
+		if(modelKeyOnDrop != null) {
+			int compValue;
+			GameObject ob;
+			ob = GameObject.Find("icon");
+			if(ob != null) {
+				compValue = (int) ob.GetComponent<CompIconDrag>().componentValue;
+				Model.SetData(modelKeyOnDrop, compValue);
+				GameObject.Find("ShipBuilder").GetComponent<ShipBuilder>().UpdateShipInfo((int) shipType);
+				activateButton.interactable = true;
+			}
+		}
 	}
 
 	public void OnPointerEnter(PointerEventData data)
@@ -54,9 +75,6 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 			return null;
 
 		var srcImage = originalObj.GetComponent<Image>();
-		if (srcImage == null)
-			return null;
-		
 		return srcImage.sprite;
 	}
 }

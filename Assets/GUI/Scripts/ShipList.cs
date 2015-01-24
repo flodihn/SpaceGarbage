@@ -14,6 +14,13 @@ public class ShipList : MonoBehaviour {
 		Model.AddListener (gameObject);
 	}
 
+	void OnEnable() { 
+		if(mode == ListMode.PlayerShips)
+			AddPlayerShipCallback();
+		else if(mode == ListMode.EnemyShips)
+			AddEnemyShipCallback();
+	}
+
 	public void AddEnemyShipCallback() {
 		ArrayList ships;
 		ships = Model.GetEnemyShips();

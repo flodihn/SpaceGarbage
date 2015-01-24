@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using SpaceGarbage;
 
 public static class Model {
+	public static string PhaserText = "Phaser: 1 point damage to shield or hull";
+
 	public static Dictionary <string, int> data = new Dictionary<string, int>();
 	public static ArrayList enemyShips = new ArrayList();
 	public static ArrayList playerShips = new ArrayList();
@@ -65,16 +67,16 @@ public static class Model {
 	public static void AddPlayerShip(Ship ship) {
 		playerShips.Add (ship);
 		foreach (GameObject listener in listeners) {
-			if(listener.activeSelf)
-				listener.SendMessage("AddPlayerShipCallback");
+			//if(listener.activeSelf)
+				//listener.SendMessage("AddPlayerShipCallback");
 		}
 	}
 	
 	public static void AddEnemyShip(Ship ship) {
 		enemyShips.Add (ship);
 		foreach (GameObject listener in listeners) {
-			if(listener.activeSelf)
-				listener.SendMessage("AddEnemyShipCallback");
+			//if(listener.activeSelf)
+				//listener.SendMessage("AddEnemyShipCallback");
 		}
 	}
 	

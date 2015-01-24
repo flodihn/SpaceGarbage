@@ -18,7 +18,6 @@ public class StringValue : System.Attribute
 }
 
 namespace SpaceGarbage {
-
 	public enum ShipTypes {
 		Fighter,
 		Bomber,
@@ -26,9 +25,10 @@ namespace SpaceGarbage {
 		CapitalShip
 	}
 
-
 	public enum Component
 	{
+		[StringValue("null")]
+		NULL,
 		[StringValue("hull")]
 		HULL,
 		[StringValue("shield")]
@@ -38,7 +38,7 @@ namespace SpaceGarbage {
 		[StringValue("neutron")]
 		NEUTRON,
 		[StringValue("disruptor")]
-		Disruptor,
+		DISRUPTOR,
 		[StringValue("railgun")]
 		RAILGUN,
 		[StringValue("heavyturret")]
@@ -53,14 +53,23 @@ namespace SpaceGarbage {
 		SCANNER
 	}
 
+	public enum SlotTypes {
+		SMALL,
+		MEDIUM,
+		LARGE
+	};
 
 	public class Ship {
-
 		public ShipTypes shipType;
+	}
 
-		public Ship() {
+	public class ShipFighter: Ship {
+		public SpaceGarbage.Component slot1;
+		public SpaceGarbage.Component slot2;
+		public SpaceGarbage.Component slot3;
+
+		public ShipFighter() {
 			shipType = ShipTypes.Fighter;
-
 		}
 	}
 }
